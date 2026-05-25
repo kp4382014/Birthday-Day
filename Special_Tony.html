@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Birthday Tony 🖤🩷</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Serif+KR:wght@400;700;900&family=Nunito:ital,wght@0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pink:#ff2d78;
+  --hot:#ff0055;
+  --soft:#ff6eb4;
+  --glow:#ff80bf;
+  --black:#0a0006;
+  --dark:#110008;
+  --card:#160010;
+  --gold:#ffd700;
+  --white:#fff;
+}
+html,body{
+  width:100%;height:100%;
+  overflow:hidden;
+  font-family:'Nunito',sans-serif;
+  background:var(--black);
+  color:#fff;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* ═══ PAGES ═══ */
+.page{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:36px 24px 108px;
+  text-align:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.55s cubic-bezier(.4,0,.2,1), transform 0.55s cubic-bezier(.4,0,.2,1);
+  transform:scale(0.96) translateY(16px);
+  will-change:opacity,transform;
+  overflow:hidden;
+}
+.page.active{opacity:1;pointer-events:all;transform:scale(1) translateY(0)}
+.page.out{opacity:0;transform:scale(1.03) translateY(-16px)}
+
+/* ════════════════════════════════
+   SHARED BG ELEMENTS
+════════════════════════════════ */
+.bg-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+
+/* glitter dots - CSS only */
+.glitter-field{position:absolute;inset:0;pointer-events:none}
+.g{
+  position:absolute;border-radius:50%;
+  animation:gSparkle ease-in-out infinite alternate;
+  will-change:opacity,transform;
+}
+@keyframes gSparkle{
+  0%  {opacity:0.05;transform:scale(0.6)}
+  100%{opacity:0.9; transform:scale(1.4)}
+}
+
+/* rose petals */
+.petal{
+  position:absolute;font-size:1.1rem;
+  animation:petalFall linear infinite;
+  will-change:transform,opacity;
+}
+@keyframes petalFall{
+  0%  {transform:translateY(-8vh) rotate(0deg) translateX(0);opacity:0}
+  5%  {opacity:0.8}
+  95% {opacity:0.6}
+  100%{transform:translateY(108vh) rotate(540deg) translateX(30px);opacity:0}
+}
+
+/* ════════════════════════════════
+   PAGE 1 — MAIN STAGE
+════════════════════════════════ */
+#p1{background:radial-gradient(ellipse 80% 60% at 50% 0%, #3d0022 0%, #0a0006 60%)}
+
+#p1 .neon-line{
+  position:absolute;
+  left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,var(--pink) 30%,var(--hot) 50%,var(--pink) 70%,transparent 100%);
+  animation:lineScan 3s ease-in-out infinite alternate;
+  will-change:top,opacity;
+}
+.nl1{top:20%;animation-delay:0s}
+.nl2{top:75%;animation-delay:1.2s}
+@keyframes lineScan{from{opacity:0.15}to{opacity:0.45}}
+
+.p1-bp-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(0.85rem,3.5vw,1.1rem);
+  letter-spacing:10px;
+  color:rgba(255,45,120,0.55);
+  margin-bottom:10px;
+  position:relative;z-index:2;
+  text-transform:uppercase;
+}
+.p1-bp-logo::before,.p1-bp-logo::after{
+  content:'♦';margin:0 8px;
+  color:rgba(255,45,120,0.35);
+  font-size:0.7rem;
+}
+
+.p1-crown{
+  font-size:clamp(2.4rem,10vw,4.5rem);
+  display:block;margin-bottom:2px;
+  animation:crownPulse 2s ease-in-out infinite;
+  filter:drop-shadow(0 0 14px rgba(255,215,0,0.7));
+  position:relative;z-index:2;
+}
+@keyframes crownPulse{
+  0%,100%{transform:rotate(-7deg) scale(1);filter:drop-shadow(0 0 14px rgba(255,215,0,0.7))}
+  50%{transform:rotate(7deg) scale(1.1);filter:drop-shadow(0 0 28px rgba(255,215,0,1))}
+}
+
+.p1-hb{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,13vw,5.8rem);
+  line-height:0.9;
+  letter-spacing:4px;
+  color:#fff;
+  text-shadow:0 0 30px rgba(255,45,120,0.6), 0 0 60px rgba(255,45,120,0.2), 2px 2px 0 rgba(0,0,0,0.4);
+  position:relative;z-index:2;
+}
+.p1-hb span{
+  display:block;
+  background:linear-gradient(135deg,#fff 0%,var(--soft) 40%,var(--pink) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.p1-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5.5rem,26vw,11rem);
+  line-height:0.85;
+  letter-spacing:6px;
+  color:var(--pink);
+  text-shadow:
+    0 0 20px var(--hot),
+    0 0 50px rgba(255,45,120,0.4),
+    0 0 100px rgba(255,45,120,0.15),
+    3px 3px 0 rgba(0,0,0,0.5);
+  position:relative;z-index:2;
+  animation:namePulse 2.5s ease-in-out infinite;
+}
+@keyframes namePulse{
+  0%,100%{text-shadow:0 0 20px var(--hot),0 0 50px rgba(255,45,120,0.4),3px 3px 0 rgba(0,0,0,0.5)}
+  50%{text-shadow:0 0 30px var(--hot),0 0 80px rgba(255,45,120,0.7),0 0 120px rgba(255,45,120,0.3),3px 3px 0 rgba(0,0,0,0.5)}
+}
+
+.p1-kpop{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(0.7rem,2.8vw,0.9rem);
+  letter-spacing:4px;
+  color:rgba(255,110,180,0.5);
+  margin-top:8px;
+  position:relative;z-index:2;
+}
+.p1-hint{
+  position:absolute;bottom:112px;
+  font-size:0.62rem;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,45,120,0.35);
+  z-index:2;animation:hintBlink 2.2s ease-in-out infinite;
+}
+@keyframes hintBlink{0%,100%{opacity:0.3}50%{opacity:0.9}}
+
+/* ════════════════════════════════
+   PAGE 2 — ATTITUDE CARD
+════════════════════════════════ */
+#p2{background:radial-gradient(ellipse 70% 60% at 80% 20%,#280015 0%,#0a0006 65%)}
+
+/* diagonal stripe accent */
+#p2::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(
+    -55deg,
+    transparent 0px,transparent 38px,
+    rgba(255,45,120,0.03) 38px,rgba(255,45,120,0.03) 40px
+  );
+}
+
+.p2-glow-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,45,120,0.25) 0%,transparent 70%);
+  width:340px;height:340px;
+  top:-80px;left:-80px;
+  animation:orbPulse 4s ease-in-out infinite alternate;
+}
+@keyframes orbPulse{from{opacity:0.7;transform:scale(1)}to{opacity:1;transform:scale(1.2)}}
+
+.p2-card{
+  position:relative;z-index:2;
+  max-width:340px;width:100%;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,45,120,0.3);
+  border-radius:28px;
+  padding:34px 28px 30px;
+  backdrop-filter:blur(18px);
+  box-shadow:
+    0 0 0 1px rgba(255,45,120,0.08),
+    0 0 60px rgba(255,45,120,0.12),
+    0 0 120px rgba(255,0,85,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+/* corner diamonds */
+.p2-card::before,.p2-card::after{
+  content:'♦';
+  position:absolute;font-size:0.85rem;
+  color:rgba(255,45,120,0.45);
+}
+.p2-card::before{top:14px;left:18px}
+.p2-card::after{bottom:14px;right:18px}
+
+.p2-tag{
+  font-size:0.6rem;letter-spacing:6px;text-transform:uppercase;
+  color:rgba(255,110,180,0.55);font-weight:900;
+  margin-bottom:16px;
+}
+.p2-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.4rem,10vw,3.8rem);
+  letter-spacing:2px;line-height:1.05;
+  color:#fff;
+  text-shadow:0 0 20px rgba(255,45,120,0.4);
+  margin-bottom:20px;
+}
+.p2-big em{
+  display:block;font-style:normal;
+  color:var(--pink);
+  text-shadow:0 0 20px rgba(255,45,120,0.7),0 0 40px rgba(255,45,120,0.3);
+  font-size:1.15em;
+  animation:emFlicker 3s ease-in-out infinite;
+}
+@keyframes emFlicker{
+  0%,92%,100%{opacity:1}
+  94%{opacity:0.5}
+  96%{opacity:1}
+  98%{opacity:0.3}
+}
+
+.p2-pill{
+  display:inline-block;
+  background:linear-gradient(135deg,rgba(255,45,120,0.2),rgba(160,0,80,0.15));
+  border:1.5px solid rgba(255,45,120,0.5);
+  border-radius:50px;
+  padding:13px 30px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;letter-spacing:2px;
+  color:#fff;
+  box-shadow:0 0 24px rgba(255,45,120,0.25),inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.p2-note{
+  font-size:0.76rem;color:rgba(255,255,255,0.28);
+  margin-top:14px;font-style:italic;font-weight:400;
+}
+
+/* ════════════════════════════════
+   PAGE 3 — WISH
+════════════════════════════════ */
+#p3{background:radial-gradient(ellipse 90% 70% at 50% 50%,#200010 0%,#060003 100%)}
+
+/* floating rose grid */
+.p3-roses{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.rr{
+  position:absolute;font-size:1.2rem;opacity:0.12;
+  animation:rrFloat ease-in-out infinite;
+}
+@keyframes rrFloat{
+  0%,100%{transform:translateY(0) rotate(-8deg) scale(1)}
+  50%{transform:translateY(-18px) rotate(8deg) scale(1.05)}
+}
+
+.p3-inner{position:relative;z-index:2;max-width:350px}
+.p3-rose-big{
+  font-size:3.5rem;display:block;margin-bottom:10px;
+  animation:roseSpin 8s linear infinite;
+  filter:drop-shadow(0 0 16px rgba(255,45,120,0.7));
+}
+@keyframes roseSpin{
+  0%{filter:hue-rotate(0deg) drop-shadow(0 0 16px rgba(255,45,120,0.7))}
+  100%{filter:hue-rotate(30deg) drop-shadow(0 0 24px rgba(255,45,120,0.9))}
+}
+.p3-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.2rem,10vw,3.5rem);
+  letter-spacing:3px;
+  color:#fff;
+  text-shadow:0 0 25px rgba(255,45,120,0.5);
+  margin-bottom:18px;
+  line-height:1.05;
+}
+.p3-box{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,45,120,0.2);
+  border-radius:22px;
+  padding:22px 24px;
+  backdrop-filter:blur(12px);
+  font-size:clamp(1rem,3.8vw,1.1rem);
+  font-weight:700;
+  line-height:2.1;
+  color:rgba(255,210,230,0.9);
+  box-shadow:0 0 40px rgba(255,45,120,0.08),inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.p3-box b{
+  color:#fff;
+  text-shadow:0 0 12px rgba(255,110,180,0.9);
+}
+.p3-box .punchline{
+  display:block;margin-top:12px;
+  font-size:0.78rem;color:rgba(255,255,255,0.28);
+  font-style:italic;font-weight:400;
+  border-top:1px solid rgba(255,45,120,0.12);
+  padding-top:10px;
+}
+
+/* ════════════════════════════════
+   PAGE 4 — FINALE
+════════════════════════════════ */
+#p4{background:radial-gradient(ellipse 80% 70% at 50% 50%,#220010 0%,#0a0006 70%)}
+
+.p4-rings{position:absolute;inset:0;pointer-events:none;z-index:1}
+.p4r{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(255,45,120,0.1);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:rExpand 4s ease-in-out infinite;
+}
+.p4r:nth-child(1){width:200px;height:200px;animation-delay:0s}
+.p4r:nth-child(2){width:330px;height:330px;animation-delay:1s;border-color:rgba(255,45,120,0.07)}
+.p4r:nth-child(3){width:460px;height:460px;animation-delay:2s;border-color:rgba(255,45,120,0.04)}
+@keyframes rExpand{
+  0%,100%{opacity:0.5;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}
+}
+
+.p4-inner{position:relative;z-index:2}
+.p4-emoji{
+  font-size:clamp(3.5rem,13vw,6rem);
+  display:block;margin-bottom:6px;
+  animation:cakeJump 1.5s ease-in-out infinite;
+  filter:drop-shadow(0 0 20px rgba(255,45,120,0.6));
+}
+@keyframes cakeJump{
+  0%,100%{transform:scale(1) translateY(0)}
+  50%{transform:scale(1.12) translateY(-14px)}
+}
+.p4-big{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,16vw,6.5rem);
+  letter-spacing:4px;line-height:0.9;
+  color:#fff;
+  text-shadow:0 0 30px rgba(255,45,120,0.5),2px 3px 0 rgba(0,0,0,0.4);
+}
+.p4-big span{
+  display:block;
+  color:var(--pink);
+  text-shadow:
+    0 0 20px var(--hot),
+    0 0 50px rgba(255,45,120,0.5),
+    0 0 90px rgba(255,45,120,0.2),
+    2px 3px 0 rgba(0,0,0,0.4);
+  animation:namePulse 2s ease-in-out infinite;
+}
+.p4-sub{
+  font-family:'Nunito',sans-serif;
+  font-size:0.95rem;font-weight:700;
+  color:rgba(255,255,255,0.32);
+  margin-top:14px;line-height:2;
+}
+.p4-bp-tag{
+  margin-top:18px;
+  font-family:'Noto Serif KR',serif;
+  font-size:0.75rem;letter-spacing:5px;
+  color:rgba(255,45,120,0.4);
+}
+
+/* ══ BLAST ══ */
+#blast{
+  position:fixed;inset:0;pointer-events:none;
+  z-index:999;overflow:hidden;
+}
+.bl{
+  position:absolute;top:-40px;
+  animation:blastDrop linear forwards;
+  will-change:transform,opacity;
+}
+@keyframes blastDrop{
+  0%  {transform:translateY(0) rotate(0deg);opacity:1}
+  80% {opacity:0.8}
+  100%{transform:translateY(115vh) rotate(800deg);opacity:0}
+}
+
+/* ══ NAV ══ */
+.nav-btn{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  z-index:300;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;letter-spacing:5px;
+  color:#fff;padding:15px 52px 13px;border-radius:50px;
+  border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--hot),#9b0050);
+  box-shadow:0 6px 28px rgba(255,0,85,0.5),0 0 0 1px rgba(255,45,120,0.2),inset 0 1px 0 rgba(255,255,255,0.12);
+  transition:transform 0.12s,box-shadow 0.15s;
+  touch-action:manipulation;
+}
+.nav-btn:active{transform:translateX(-50%) scale(0.92)}
+
+/* ══ DOTS ══ */
+.dots{
+  position:fixed;bottom:84px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:300;align-items:center;
+}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  transition:all 0.3s ease;
+}
+.dot.on{
+  background:var(--pink);width:20px;border-radius:3px;
+  box-shadow:0 0 10px rgba(255,45,120,0.9);
+}
+</style>
+</head>
+<body>
+
+<!-- BLAST LAYER -->
+<div id="blast"></div>
+
+<!-- ════════ PAGE 1 ════════ -->
+<div class="page active" id="p1">
+  <div class="bg-layer" id="bg1">
+    <div class="glitter-field" id="gf1"></div>
+  </div>
+  <div class="neon-line nl1"></div>
+  <div class="neon-line nl2"></div>
+
+  <div class="p1-bp-logo">Black Pink in your area</div>
+  <span class="p1-crown">👑</span>
+  <div class="p1-hb">
+    <span>Happy</span>
+    Birthday
+  </div>
+  <div class="p1-name">TONY</div>
+  <div class="p1-kpop">생일 축하해요 🖤🩷</div>
+  <div class="p1-hint">tap to continue ♦</div>
+</div>
+
+<!-- ════════ PAGE 2 ════════ -->
+<div class="page" id="p2">
+  <div class="p2-glow-orb"></div>
+  <div class="p2-card">
+    <div class="p2-tag">♦ real talk ♦</div>
+    <div class="p2-big">
+      Attitude level?
+      <em>EXTREME 😤</em>
+    </div>
+    <div class="p2-pill">🗣️ "BHADWA!" 💀</div>
+    <div class="p2-note">Google renamed it "Tony's Hello" 😂</div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 3 ════════ -->
+<div class="page" id="p3">
+  <div class="p3-roses" id="roses3"></div>
+  <div class="p3-inner">
+    <span class="p3-rose-big">🌹</span>
+    <div class="p3-title">My Real<br>Wish For You</div>
+    <div class="p3-box">
+      Mile tujhe ek <b>sweet gorgeous wifey</b> 💍<br>
+      Jo teri attitude bhi jhele…
+      <span class="punchline">…koi banda toh nahi kar payega 💀😂</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 4 ════════ -->
+<div class="page" id="p4">
+  <div class="p4-rings">
+    <div class="p4r"></div>
+    <div class="p4r"></div>
+    <div class="p4r"></div>
+  </div>
+  <div class="p4-inner">
+    <span class="p4-emoji">🎂</span>
+    <div class="p4-big">
+      Jee Le<br>
+      <span>Maharani! 🎉</span>
+    </div>
+    <div class="p4-sub">Aaj sirf cake kha<br>aur khush reh 🎂</div>
+    <div class="p4-bp-tag">🖤 BLACKPINK IN YOUR AREA 🩷</div>
+  </div>
+</div>
+
+<!-- ══ UI ══ -->
+<div class="dots" id="dots">
+  <div class="dot on"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+<button class="nav-btn" id="navBtn">TAP ♦</button>
+
+<script>
+// ── Glitter field (page 1) ──
+const gf=document.getElementById('gf1');
+const GCOLS=['#ff2d78','#ff80bf','#fff','#ffb3d9','#ff0055','#ffd700'];
+for(let i=0;i<120;i++){
+  const g=document.createElement('div');
+  g.className='g';
+  const sz=1+Math.random()*3;
+  const col=GCOLS[Math.floor(Math.random()*GCOLS.length)];
+  g.style.cssText=`width:${sz}px;height:${sz}px;background:${col};top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${1.5+Math.random()*3}s;animation-delay:-${Math.random()*4}s;box-shadow:0 0 ${sz*2}px ${col}`;
+  gf.appendChild(g);
+}
+
+// ── Rose petals (page 1 bg) ──
+const PETALS=['🌸','🌹','🩷','💗','🌺','💮'];
+const bg1=document.getElementById('bg1');
+for(let i=0;i<18;i++){
+  const p=document.createElement('div');
+  p.className='petal';
+  p.textContent=PETALS[i%PETALS.length];
+  const sz=0.7+Math.random()*0.7;
+  p.style.cssText=`font-size:${sz}rem;left:${Math.random()*100}%;animation-duration:${12+Math.random()*10}s;animation-delay:-${Math.random()*14}s`;
+  bg1.appendChild(p);
+}
+
+// ── Rose grid (page 3) ──
+const r3=document.getElementById('roses3');
+for(let i=0;i<20;i++){
+  const r=document.createElement('div');
+  r.className='rr';
+  r.textContent=['🌹','🖤','🩷','♦','✦'][i%5];
+  r.style.cssText=`top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${3+Math.random()*4}s;animation-delay:-${Math.random()*5}s`;
+  r3.appendChild(r);
+}
+
+// ── Nav ──
+let cur=0;
+const PAGES=['p1','p2','p3','p4'];
+const LABELS=['TAP ♦','NEXT ♦','NEXT ♦','🎊 BLAST!'];
+const BKGS=[
+  'linear-gradient(135deg,#ff0055,#8b0038)',
+  'linear-gradient(135deg,#cc0044,#660022)',
+  'linear-gradient(135deg,#ff2d78,#8b0038)',
+  'linear-gradient(135deg,#ff0055,#ff2d78)'
+];
+const btn=document.getElementById('navBtn');
+const dotEls=document.querySelectorAll('.dot');
+
+function goTo(n){
+  const prev=document.getElementById(PAGES[cur]);
+  prev.classList.add('out');
+  prev.classList.remove('active');
+  setTimeout(()=>prev.classList.remove('out'),600);
+  cur=n;
+  document.getElementById(PAGES[cur]).classList.add('active');
+  dotEls.forEach((d,i)=>d.classList.toggle('on',i===cur));
+  btn.textContent=LABELS[cur];
+  btn.style.background=BKGS[cur];
+}
+
+// ── Blast confetti ──
+function blast(){
+  const layer=document.getElementById('blast');
+  layer.innerHTML='';
+  const ITEMS=['🌹','🩷','🖤','♦','✨','💗','🌸','🎉','🎊','⭐','💥'];
+  const N=70;
+  for(let i=0;i<N;i++){
+    const b=document.createElement('div');
+    b.className='bl';
+    b.textContent=ITEMS[Math.floor(Math.random()*ITEMS.length)];
+    const dur=1.6+Math.random()*1.2;
+    const delay=Math.random()*0.9;
+    b.style.cssText=`left:${Math.random()*100}%;font-size:${1+Math.random()*1.6}rem;animation-duration:${dur}s;animation-delay:${delay}s`;
+    layer.appendChild(b);
+  }
+  setTimeout(()=>layer.innerHTML='',3500);
+}
+
+btn.addEventListener('click',()=>{
+  if(cur<3)goTo(cur+1);
+  else blast();
+});
+
+// Swipe
+let sx=0;
+document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=sx-e.changedTouches[0].clientX;
+  if(dx>50&&cur<3)goTo(cur+1);
+  if(dx<-50&&cur>0)goTo(cur-1);
+},{passive:true});
+</script>
+</body>
+</html>
